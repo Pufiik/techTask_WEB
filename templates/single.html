@@ -1,0 +1,65 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block content %}
+
+
+<script src="https://kit.fontawesome.com/3111834a82.js" crossorigin="anonymous"></script>
+<div class="row q" style="margin-top: 30px;">
+    <div class="row">
+        <div class="col-3">
+            <img src="{% static '/img/avatar1.png' %}" alt="" class="question-img">
+        </div>
+        <div class="col-9">
+            <div class="row">
+                <div class="question-title">{{question.title}}</div>
+                <div class="question-text">{{question.content}}<br><br></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3">
+            <button class="btnn"
+                    style="cursor: pointer; margin-left: 10px; margin-top: 10px; background-color: #007bff; color: #fff;border-radius: 8px;padding: 5px 10px;font-size: 16px; font-family: Helvetica;">
+            <span class="left-side">
+                <i class="fas fa-heart"></i>
+                <span class="like">Like</span>
+            </span>
+                <span class="count">0</span>
+            </button>
+        </div>
+        <div class="col-9">
+            <div class="row">
+                <div class="col-3" style="margin-top: 15px;">
+                    <div>answer(3)</div>
+                </div>
+                <div class="col-9" style="margin-top: 15px;">
+                    <div class="tags2">Tags:
+                        {% for tag in question.tags %}
+                            <a href="{% url 'tags' tag_name=tag %}">{{tag}}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br><hr>
+<div class="answer" style="font-weight: bold; font-size: 18pt; font-family: Helvetica;">Answers</div>
+    {% for answer in answers %}
+        {% include 'components/answer_item.html' %}
+    {% endfor %}
+<hr>
+    <div class="row">
+        <label for="text"
+               style="font-size: 18pt; font-family: Helvetica; font-weight: bold; padding-bottom: 10px;">Input
+            your answer:</label>
+        <textarea class="form-control" id="text" rows="3"
+                  style="height: 250px; width: 750px;"></textarea>
+    </div>
+    <br>
+    <button type="button" class="btn btn-primary"
+            style="width: 100px; font-family: Helvetica; font-size: 13pt; font-weight: bold;"> ANSWER
+    </button>
+    <br><br>
+
+{% endblock %}

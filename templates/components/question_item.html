@@ -1,0 +1,42 @@
+{% load static %}
+<script src="https://kit.fontawesome.com/3111834a82.js" crossorigin="anonymous"></script>
+<div class="row question">
+    <div class="row">
+        <div class="col-3">
+            <img src="{% static '/img/avatar1.png' %}" alt="" class="question-img">
+        </div>
+        <div class="col-9">
+            <div class="row">
+                <div class="question-title"><a href="{% url 'single' question.id %}">{{question.title}}</a></div>
+                <div class="question-text">{{question.content}}<br><br></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3">
+            <button class="btnn"
+                    style="cursor: pointer; margin-left: 10px; margin-top: 10px; background-color: #007bff; color: #fff;border-radius: 8px;padding: 5px 10px;font-size: 16px; font-family: Helvetica;">
+            <span class="left-side">
+                <i class="fas fa-heart"></i>
+                <span class="like">Like</span>
+            </span>
+                <span class="count">0</span>
+            </button>
+        </div>
+        <div class="col-9">
+            <div class="row">
+                <div class="col-3" style="margin-top: 15px;">
+                    <a href="{% url 'single' question_id=question.id %}">answer(3)</a>
+                </div>
+                <div class="col-9" style="margin-top: 15px;">
+                    <div class="tags2">Tags:
+                        {% for tag in question.tags %}
+                            <a href="{% url 'tags' tag_name=tag %}">{{tag}}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

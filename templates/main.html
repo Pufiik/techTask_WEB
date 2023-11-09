@@ -1,0 +1,12 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block content %}
+    <br>
+    <div class="row titles" style="padding-top: 100px;">NEW QUESTONS
+        <a href="{% url 'hot' %}" style="font-size: 15pt; padding-left: 15px;">Hot topics</a>
+    </div>
+    {% for question in questions %}
+        {% include 'components/question_item.html' %}
+    {% endfor %}
+
+{% endblock %}

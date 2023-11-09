@@ -1,0 +1,46 @@
+{% extends 'layouts/form.html' %}
+{% load static %}
+{% block content %}
+<br>
+<h1 style=" font-family: Helvetica; font-weight: bold;">NEW
+    QUESTONS</h1>
+<br><br>
+<div class="row">
+    <div class="col-3" style="font-weight: bold; font-family: Helvetica; font-size: 16pt;">Title</div>
+    <div class="col-9">
+        <div class="mb-3">
+            <textarea class="form-control" id="t" rows="3"
+                      style="height: 15px; width: 520px;" placeholder="Problem with CSS"></textarea>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-3" style="font-weight: bold; font-family: Helvetica; font-size: 16pt;">Text</div>
+    <div class="col-9">
+        <div class="mb-3">
+                            <textarea class="form-control" id="text" rows="3"
+                                      style="height: 250px; width: 520px;" placeholder="I have a problem with..."></textarea>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-3" style="font-weight: bold; font-family: Helvetica; font-size: 16pt;">Tags</div>
+    <div class="col-9">
+        <div class="mb-3">
+                            <textarea class="form-control" id="tags" rows="3"
+                                      style="height: 15px; width: 520px;" placeholder="CSS"></textarea>
+        </div>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-9">
+        <button type="button" class="btn btn-dark"
+                style="width: 120px; font-family: Helvetica; font-size: 13pt; font-weight: bold;">
+            ASK
+        </button>
+    </div>
+</div>
+<br><br>
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block content %}
+<h2 style="margin-top: 45px; font-family: Helvetica; font-weight: bold; font-size: 26pt;">Tag : {{tag_name}}</h2>
+{% for question in questions %}
+{% include 'components/question_item.html' %}
+{% endfor %}
+{% endblock %}

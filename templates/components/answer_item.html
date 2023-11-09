@@ -1,0 +1,37 @@
+{% load static %}
+<script src="https://kit.fontawesome.com/3111834a82.js" crossorigin="anonymous"></script>
+<div class="row question">
+    <div class="row">
+        <div class="col-3">
+            <img src="{% static '/img/avatar1.png' %}" alt="" class="question-img">
+        </div>
+        <div class="col-9">
+            <div class="row">
+                <div class="answer-body" style="font-size: 16px;font-family: Helvetica;line-height: 120%;">{{ answer.body }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3">
+            <button class="btnn"
+                    style="cursor: pointer; margin-left: 10px; margin-top: 10px; background-color: #007bff; color: #fff;border-radius: 8px;padding: 5px 10px;font-size: 16px; font-family: Helvetica;">
+            <span class="left-side">
+                <i class="fas fa-heart"></i>
+                <span class="like">Like</span>
+            </span>
+                <span class="count">0</span>
+            </button>
+        </div>
+        <div class="col-9">
+            <div class="row">
+                <div class="form-check" style="margin: 15px">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        Correct!
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

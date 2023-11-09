@@ -1,0 +1,80 @@
+{% extends 'layouts/form.html' %}
+{% load static %}
+{% block content %}
+    <h1 style="font-family: Helvetica; font-weight: bold; padding-top: 25px;">SETTINGS: Dr.Pepper</h1><br>
+    <br>
+    <form action="" class="needs-validation" novalidate>
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label for="validationCustom01" style="font-family: Helvetica; font-weigth: bold;">Login</label>
+                <input type="text" class="form-control" id="validationCustom01" placeholder="new_login" required>
+                <div class="invalid-feedback">
+                    Empty field!
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label for="validationCustom01" style="font-family: Helvetica; font-weigth: bold;">Email adress</label>
+                <input type="text" class="form-control" id="validationCustom01" placeholder="name@example.com" required>
+                <div class="invalid-feedback">
+                    Empty field!
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label for="validationCustom01" style="font-family: Helvetica; font-weigth: bold;">Username</label>
+                <input type="text" class="form-control" id="validationCustom01" placeholder="new_name_user" required>
+                <div class="invalid-feedback">
+                   Empty field!
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-3">
+                <h3 style="color: darkblue; font-size: 14pt; font-weight: bold; font-family: Helvetica;">Upload
+                    avatar:</h3>
+            </div>
+            <div class="col-9">
+                <img src="../static/img/avatar1.png" style="width: 100px; height: 100px;"><br><br>
+                <span class="badge bg-light" style=" color: black; font-size: 11pt;">C:\avatar.jpg</span>
+                <button type="button" class="btn btn-info topic_btn"
+                        style="width: 100px; font-family: Helvetica; font-size: 13pt; font-weight: bold; margin-left: 10px;">
+                    Choose
+                </button>
+                <br><br>
+            </div>
+        </div>
+
+        <br>
+        <button type="submit" class="btn btn-dark topic_btn"
+                style="width: 100px; font-family: Helvetica; font-size: 13pt; font-weight: bold; width: 200px;">
+            Create account
+        </button>
+    </form>
+
+    <br><br>
+    <script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
+{% endblock %}
+

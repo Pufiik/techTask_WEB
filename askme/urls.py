@@ -1,5 +1,5 @@
 """
-URL configuration for techTask1 project.
+URL configuration for askme project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.2/topics/http/urls/
@@ -16,7 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from app import views
 
 urlpatterns = [
+    path('', views.index, name='index'),
+    path('login', views.login, name='login'),
+    path('reg', views.reg, name='reg'),
+    path('settings', views.settings, name='settings'),
+    path('ask', views.ask, name='ask'),
+    path('tags/<str:tag_name>', views.tags, name='tags'),
+    path('single/<int:question_id>', views.single, name='single'),
     path('admin/', admin.site.urls),
+    path('hot', views.hot, name='hot')
 ]

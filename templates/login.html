@@ -1,0 +1,49 @@
+{% extends 'layouts/form.html' %}
+{% load static %}
+{% block content %}
+<h1 style="font-family: Helvetica; font-weight: bold; padding-top: 20px;">LOG IN</h1><br>
+<form method="POST" action="" class="needs-validation" novalidate>
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label for="validationCustom01" style="font-family: Helvetica; font-weigth: bold;">Login</label>
+            <input type="text" class="form-control" id="validationCustom01" placeholder="name@example.com" required>
+            <div class="invalid-feedback">
+                Wrong email!
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="validationCustom02">Password</label>
+            <input type="text" class="form-control" id="validationCustom02" placeholder="password" name="password"
+                   required>
+            <div class="invalid-feedback">
+                Wrong password!
+            </div>
+        </div>
+        <button type="submit" class="btn btn-dark topic_btn"
+                style="width: 100px; font-family: Helvetica; font-size: 13pt; font-weight: bold; margin-bottom: 30px;">LOG IN
+        </button>
+    </div>
+</form>
+<a href="{% url 'reg' %}" style="color: cornflowerblue">Create new account</a>
+
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>
+{% endblock %}
