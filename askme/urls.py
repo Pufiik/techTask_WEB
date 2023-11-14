@@ -27,5 +27,5 @@ urlpatterns = [
     path('tags/<str:tag_name>', views.tags, name='tags'),
     path('single/<int:question_id>', views.single, name='single'),
     path('admin/', admin.site.urls),
-    path('hot', views.hot, name='hot')
+    path('hot/<int:num>', views.hot, name='hot')
 ]

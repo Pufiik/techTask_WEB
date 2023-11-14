@@ -198,22 +198,34 @@
             <div class="col-4" style="padding-left: 60px; margin-top: 25px;">
                 <h2 style=" font-weight: bold;">Popular tags</h2>
                 <div class="tags">
-                    <a role="button" class="btn btn-dark topic_btn" style="width: 100px; font-family: Helvetica; font-size: 13pt; font-weight: bold;" href="{% url 'tags' tag_name='Kotlin'%}">Kotlin</a>
-                    <a role="button" class="btn btn-primary topic_btn" style="width: 120px; font-family: Helvetica; font-size: 13pt; font-weight: bold;" href="{% url 'tags' tag_name='TechnoPark'%}">TechnoPark</a>
-                    <a role="button" class="btn btn-secondary topic_btn" style="width: 120px; font-family: Helvetica; font-size: 13pt; font-weight: bold;" href="{% url 'tags' tag_name='Python'%}">Python</a>
-                    <a role="button" class="btn btn-dark topic_btn" style="width: 120px; font-family: Helvetica; font-size: 13pt; font-weight: bold;" href="{% url 'tags' tag_name='HTML'%}">HTML</a>
-                    <a role="button" class="btn btn-info topic_btn" style="width: 120px; font-family: Helvetica; font-size: 13pt; font-weight: bold;" href="{% url 'tags' tag_name='CSS'%}">CSS</a>
-                    <a role="button" class="btn btn-primary topic_btn" style="width: 120px; font-family: Helvetica; font-size: 13pt; font-weight: bold;" href="{% url 'tags' tag_name='VK'%}">VK</a>
+                    {% for tag in tags %}
+                        {% if forloop.counter0 == 0 %}
+                        <a role="button" class="btn btn-dark topic_btn" style="width: 100px; font-family: Helvetica; font-size: 13pt; font-weight: bold;" href="{% url 'tags' tag_name=tag.tag%}">{{ tag.tag }}</a>
+                        {% endif %}
+                        {% if forloop.counter0 == 1 %}
+                        <a role="button" class="btn btn-primary topic_btn" style="width: 120px; font-family: Helvetica; font-size: 13pt; font-weight: bold;" href="{% url 'tags' tag_name=tag.tag%}">{{ tag.tag }}</a>
+                        {% endif %}
+                        {% if forloop.counter0 == 2 %}
+                        <a role="button" class="btn btn-secondary topic_btn" style="width: 120px; font-family: Helvetica; font-size: 13pt; font-weight: bold;" href="{% url 'tags' tag_name=tag.tag%}">{{ tag.tag }}</a>
+                        {% endif %}
+                        {% if forloop.counter0 == 3 %}
+                        <a role="button" class="btn btn-dark topic_btn" style="width: 120px; font-family: Helvetica; font-size: 13pt; font-weight: bold;" href="{% url 'tags' tag_name=tag.tag%}">{{ tag.tag }}</a>
+                        {% endif %}
+                        {% if forloop.counter0 == 4 %}
+                        <a role="button" class="btn btn-info topic_btn" style="width: 120px; font-family: Helvetica; font-size: 13pt; font-weight: bold;" href="{% url 'tags' tag_name=tag.tag%}">{{ tag.tag }}</a>
+                        {% endif %}
+                        {% if forloop.counter0 == 5 %}
+                        <a role="button" class="btn btn-primary topic_btn" style="width: 120px; font-family: Helvetica; font-size: 13pt; font-weight: bold;" href="{% url 'tags' tag_name=tag.tag%}">{{ tag.tag }}</a>
+                        {% endif %}
+                    {% endfor %}
                 </div>
                 <br><br><br>
                 <h2 style="font-weight: bold;">Best Users</h2>
                 <div>
                     <ul class="list-group">
-                        <li class="list-group-item"><a href="">Mr. Freeman</a></li>
-                        <li class="list-group-item"><a href="">Gojo Satoru</a></li>
-                        <li class="list-group-item"><a href="">Jotaro Kujo</a></li>
-                        <li class="list-group-item"><a href="">Morgenshtern</a></li>
-                        <li class="list-group-item"><a href="">Saul Goodman</a></li>
+                        {% for user in users %}
+                        <li class="list-group-item"><a href="">{{ user.username }}</a></li>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>

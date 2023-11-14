@@ -14,12 +14,20 @@
     <div class="row">
         <div class="col-3">
             <button class="btnn"
-                    style="cursor: pointer; margin-left: 10px; margin-top: 10px; background-color: #007bff; color: #fff;border-radius: 8px;padding: 5px 10px;font-size: 16px; font-family: Helvetica;">
+                    style="cursor: pointer; margin-top: 10px; background-color: #007bff; color: #fff;border-radius: 8px;padding: 5px 10px;font-size: 16px; font-family: Helvetica;">
             <span class="left-side">
-                <i class="fas fa-heart"></i>
-                <span class="like">Like</span>
+                <i class="fas fa-thumbs-up"></i>
+                <span class="like"></span>
             </span>
-                <span class="count">0</span>
+                <span class="count">{{ answer.likes }}</span>
+            </button>
+            <button class="btnn"
+                    style="cursor: pointer; margin-left: 5px; margin-top: 10px; background-color: #007bff; color: #fff;border-radius: 8px;padding: 5px 10px;font-size: 16px; font-family: Helvetica;">
+            <span class="left-side">
+                <i class="fas fa-thumbs-down"></i>
+                <span class="dislike"></span>
+            </span>
+                <span class="count">{{ answer.dislikes }}</span>
             </button>
         </div>
         <div class="col-9">
