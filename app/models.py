@@ -7,24 +7,13 @@ from django.db.models import Sum, Count
 
 class QuestionManager(models.Manager):
 
-    @staticmethod
-    def update_questions():
-        questions = Question.question_items.all()
-        for q in questions:
-            q.count_answer = Answer.answer_items.answer_count(q.id)
-            q.count_like = LikeQuestion.like_items.count_like(q.id)
-            q.count_dislike = LikeQuestion.like_items.count_dislike(q.id)
-            q.count = q.count_like - q.count_dislike
-            q.save()
-
     def all_user_questions(self, user_id):
-        Question.question_items.update_questions()
         return self.filter(user__id=user_id).all()
 
     def likes_user_question(self, user_id):
-        questions_user = Question.question_items.all_user_questions(user_id)
-        likes = questions_user.aggregate(Sum('count_like')).get('count_like__sum')
-        dislikes = questions_user.aggregate(Sum('count_dislike')).get('count_dislike__sum')
+
+        likes = Question.question_items.aggregate(Sum('count_like')).get('count_like__sum')
+        dislikes = Question.question_items.aggregate(Sum('count_dislike')).get('count_dislike__sum')
         if likes and dislikes:
             return likes - dislikes
         elif likes and not dislikes:
@@ -35,19 +24,19 @@ class QuestionManager(models.Manager):
             return 0
 
     def new(self):
-        Question.question_items.update_questions()
+
         return self.order_by('-id').all()
 
     def best(self):
-        Question.question_items.update_questions()
+
         return self.order_by('-count').all()
 
     def filter_by_tag(self, tag_name):
-        Question.question_items.update_questions()
+
         return self.filter(tags__tag=tag_name).all()
 
     def single(self, q_id):
-        Question.question_items.update_questions()
+
         return self.all().filter(id=q_id).all()
 
 
@@ -78,31 +67,17 @@ class LikeQuestionManager(models.Manager):
             return dislikes * (-1)
         return 0
 
+
 class TagManager(models.Manager):
 
     def popular_tags(self, num):
         return self.annotate(num_questions=Count('questions')).order_by('-num_questions')[:num]
 
-class AnswerManager(models.Manager):
-    @staticmethod
-    def update(q_id):
-        answers = Answer.answer_items.filter(question__id=q_id).all()
-        for a in answers:
-            a.likes = LikeAnswer.like_items.count_like(a.id)
-            a.dislikes = LikeAnswer.like_items.count_dislike(a.id)
-            a.count = a.likes - a.dislikes
-            a.save()
 
-    def update_answers(self, u_id):
-        answers = Answer.answer_items.filter(user__id=u_id).all()
-        for a in answers:
-            a.likes = LikeAnswer.like_items.count_like(a.id)
-            a.dislikes = LikeAnswer.like_items.count_dislike(a.id)
-            a.count = a.likes - a.dislikes
-            a.save()
+class AnswerManager(models.Manager):
 
     def get_answers(self, q_id):
-        Answer.answer_items.update(q_id)
+
         answers = self.filter(question__id=q_id).all()
         return answers
 
@@ -110,7 +85,7 @@ class AnswerManager(models.Manager):
         return self.select_related('question').filter(question__id=q_id).count()
 
     def all_user_answers(self, user_id):
-        Answer.answer_items.update_answers(user_id)
+
         return self.filter(user__id=user_id).all()
 
     def likes_user_answers(self, user_id):
@@ -169,6 +144,7 @@ class Answer(models.Model):
 class Tag(models.Model):
     tag = models.CharField(max_length=32)
     tag_items = TagManager()
+
     def __str__(self):
         return f'{self.tag}'
 
@@ -183,6 +159,7 @@ class LikeQuestion(models.Model):
     question = models.ForeignKey('Question', on_delete=models.PROTECT)
     val = models.IntegerField(default=0)
     like_items = LikeQuestionManager()
+
     class Meta:
         unique_together = [['user', 'question']]
 
