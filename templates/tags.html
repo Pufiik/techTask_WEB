@@ -1,8 +1,15 @@
 {% extends 'layouts/base.html' %}
 {% load static %}
+{% block navbar %}
+     {% include 'components/navbar_in.html' %}
+{% endblock %}
 {% block content %}
 <h2 style="margin-top: 45px; font-family: Helvetica; font-weight: bold; font-size: 26pt;">Tag : {{tag_name}}</h2>
 {% for question in questions %}
 {% include 'components/question_item.html' %}
 {% endfor %}
+{% endblock %}
+
+{% block pagination %}
+     {% include 'components/pagination.html' %}
 {% endblock %}

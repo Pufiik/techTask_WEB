@@ -1,0 +1,21 @@
+{% load static %}
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'index' %}">ASK PUGOVISHNIKOVA</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <form class="d-flex" style="width: 50%; margin-left: 15px;" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </form>
+                <div class="refs" style="display: inline-block">
+                    <a href="{% url 'settings' %}" style="margin-left: 30px; color: cornflowerblue">settings</a>
+                    <a href="{% url 'reg' %}" style="margin-left: 15px; color: cornflowerblue">register</a>
+                </div>
+            </div>
+        </div>
+    </nav>

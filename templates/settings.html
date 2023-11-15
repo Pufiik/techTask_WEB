@@ -1,5 +1,8 @@
-{% extends 'layouts/form.html' %}
+{% extends 'layouts/base.html' %}
 {% load static %}
+{% block navbar %}
+     {% include 'components/navbar_in.html' %}
+{% endblock %}
 {% block content %}
     <h1 style="font-family: Helvetica; font-weight: bold; padding-top: 25px;">SETTINGS: Dr.Pepper</h1><br>
     <br>

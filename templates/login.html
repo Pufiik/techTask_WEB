@@ -1,5 +1,8 @@
-{% extends 'layouts/form.html' %}
+{% extends 'layouts/base.html' %}
 {% load static %}
+{% block navbar %}
+     {% include 'components/navbar_out.html' %}
+{% endblock %}
 {% block content %}
 <h1 style="font-family: Helvetica; font-weight: bold; padding-top: 20px;">LOG IN</h1><br>
 <form method="POST" action="" class="needs-validation" novalidate>
