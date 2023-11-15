@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
-from django.db.models import Sum
+from django.db.models import Sum, Count
 
 
 # Create your models here.0
@@ -38,9 +38,9 @@ class QuestionManager(models.Manager):
         Question.question_items.update_questions()
         return self.order_by('-id').all()
 
-    def best(self, n):
+    def best(self):
         Question.question_items.update_questions()
-        return self.order_by('-count')[:n].all()
+        return self.order_by('-count').all()
 
     def filter_by_tag(self, tag_name):
         Question.question_items.update_questions()
@@ -78,6 +78,10 @@ class LikeQuestionManager(models.Manager):
             return dislikes * (-1)
         return 0
 
+class TagManager(models.Manager):
+
+    def popular_tags(self, num):
+        return self.annotate(num_questions=Count('questions')).order_by('-num_questions')[:num]
 
 class AnswerManager(models.Manager):
     @staticmethod
@@ -164,7 +168,7 @@ class Answer(models.Model):
 
 class Tag(models.Model):
     tag = models.CharField(max_length=32)
-
+    tag_items = TagManager()
     def __str__(self):
         return f'{self.tag}'
 
@@ -179,6 +183,8 @@ class LikeQuestion(models.Model):
     question = models.ForeignKey('Question', on_delete=models.PROTECT)
     val = models.IntegerField(default=0)
     like_items = LikeQuestionManager()
+    class Meta:
+        unique_together = [['user', 'question']]
 
 
 class LikeAnswer(models.Model):
@@ -186,3 +192,6 @@ class LikeAnswer(models.Model):
     answer = models.ForeignKey('Answer', on_delete=models.PROTECT)
     val = models.IntegerField(default=0)
     like_items = LikeAnswerManager()
+
+    class Meta:
+        unique_together = [['user', 'answer']]
