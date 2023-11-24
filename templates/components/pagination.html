@@ -1,23 +1,23 @@
 {% load static %}
 <nav aria-label="... " style="margin-top: 30px; margin-left: 75px;">
-    {% if questions.has_other_pages %}
+    {% if items.has_other_pages %}
     <ul class="pagination">
-        {% if questions.has_previous %}
-        <li class="page-item"><a class="page-link" href="?page={{ questions.previous_page_number }}">Previous</a></li>
+        {% if items.has_previous %}
+        <li class="page-item"><a class="page-link" href="?page={{ items.previous_page_number }}">Previous</a></li>
         {% else %}
         <li class="page-item disabled"><span class="page-link">Previous</span></li>
         {% endif %}
 
-        {% for i in questions.paginator.page_range %}
-        {% if questions.number == i %}
+        {% for i in items.paginator.page_range %}
+        {% if items.number == i %}
         <li class="page-item active" aria-current="page"><a class="page-link" href="#">{{ i }}</a></li>
         {% else %}
         <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
         {% endif %}
         {% endfor %}
 
-        {% if questions.has_next %}
-        <li class="page-item"><a class="page-link" href="?page={{questions.next_page_number }}">Next</a></li>
+        {% if items.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{items.next_page_number }}">Next</a></li>
         {% else %}
         <li class="page-item disabled"><span class="page-link">Next</span></li>
         {% endif %}

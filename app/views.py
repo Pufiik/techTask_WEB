@@ -17,7 +17,7 @@ def paginate(objects, page, page_count=2):
 
 def index(request):
     page = request.GET.get('page', 1)
-    return render(request, 'main.html', {'questions': paginate(Question.question_items.new(), page), 'users': best_users(5), 'tags': Tag.tag_items.popular_tags(6)})
+    return render(request, 'main.html', {'items': paginate(Question.question_items.new(), page), 'users': best_users(5), 'tags': Tag.tag_items.popular_tags(6)})
 
 
 def login(request):
@@ -37,7 +37,8 @@ def ask(request):
 
 
 def single(request, question_id):
-    return render(request, 'single.html', {'question': Question.question_items.single(q_id=question_id), 'answers': Answer.answer_items.get_answers(question_id), 'users': best_users(5), 'tags':Tag.tag_items.popular_tags(6)})
+    page = request.GET.get('page', 1)
+    return render(request, 'single.html', {'question': Question.question_items.single(q_id=question_id), 'items': paginate(Answer.answer_items.get_answers(question_id), page), 'users': best_users(5), 'tags':Tag.tag_items.popular_tags(6)})
 
 
 def tags(request, tag_name):

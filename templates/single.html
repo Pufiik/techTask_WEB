@@ -57,15 +57,19 @@
         <br>
         <hr>
         <div class="answer" style="font-weight: bold; font-size: 18pt; font-family: Helvetica;">Answers</div>
-        {% for answer in answers %}
+        {% for answer in items %}
             {% include 'components/answer_item.html' %}
         {% endfor %}
 
-        {% if answers|length == 0 %}
+        {% if items|length == 0 %}
 
             Unfortunately, no answers
 
         {% endif %}
+
+        {% block pagination %}
+            {% include 'components/pagination.html' %}
+        {% endblock %}
         <hr>
         <div class="row">
             <label for="text"
